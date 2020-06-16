@@ -64,56 +64,15 @@ Opprett bucketpolicies for begge bøttene ved å bruke [`aws_s3_bucket_policy`](
 Se [policy.md](terraform/test/policy/policy.md) for en forklaring på innholdet i policyen.
 
 
-### Bruke AWS-cliet til opplasting av filer
+### npm run upload-assets
 
-Bygg assets lokalt med `npm run build` og bruk aws-cliet til å laste opp alt innholdet i build-mappen til asset-bucketen under navnet `assets/id`. Velg en tilfeldig id for testen, senere skal vi bruke githash! Test at fila blir tilgjengelig i browseren på `<bucket_domain_name>/assets/id/main.js` og sett rett cachcontrol-headers.
+Gjør endring i `upload-assets.js` og sett navn inn rett navn på bucket. Som version kan du beholde 1 forelpig. Kjør scriptet med `npm run upload-assets` og sjekk at du får den bygde `main.js` lastet opp i bøtta og public tilgjengelig på nett.
 
+### npm run deploy-test
 
-`aws s3 cp <LocalPath> <S3Uri>`
+Gjør endring i `deploy-env.js` og sett navn inn rett navn på bucket og rett url til assets-bucket. Som version kan du beholde 1 *eller* sette samme versjon som du gjorde i steget over. Kjør scriptet med `npm run deploy-test` og sjekk at du får den bygde `index.html` lastet opp i bøtta og public tilgjengelig på nett.
 
-Se [AWS-cli-docs](https://docs.aws.amazon.com/cli/latest/reference/s3/cp.html) for `aws s3 cp`
-
-<details><summary>Tips</summary>
-<p>
-
-- bruk følgende S3-uri `s3://bucket-name/assets/1/`
-- `--recursive` laster opp hele mappen
-- `--cache-control public,max-age=31536000,immutable` setter cache-controls-headerne til alltid lagre som beskrevet i https://immutablewebapps.org/
-</p>
-</details>
-
-Gjør endringer i `sha` og `url` i `src-index/main.js` for å peke på bucket og fila du har lastet opp over.
-Bygg index.html (`node src-index/main.js`) og bruk `aws s3 cp` igjen for å kopiere index.html til host-bucket. Husk rett headers
-
-Om du nå går på `<bucket_domain_name>/index.html` bør du se en kjørende applikasjon.
-
-<details><summary>Tips</summary>
-<p>
-
-- Bruk `index.html` både som localPath og `s3://bucket-host-name/index.html` som S3Uri ettersom vi kun laster opp en fil
-- `--cache-control no-store` setter cache-controls-headerne til aldri lagre som beskrevet i https://immutablewebapps.org/
-</p>
-</details>
-
-
-### Autodeploy av assets med Github Actions
-
-Nå skal vi la Github Actions overta bygging av assets og opplasting til assets-bucketen under unike versjonsnavn.
-For enkelhets skyld er versjonsnavnet her `assets/sha/`. Vi skal bruke de samme kommandoene som over,
-men la det utførest av github.
-
-- I `.github/workflows/nodejs.yml` er det starten på en workflow. Fullfør denne slik at bygg og kopier filer til assets-bucketen skjer på hver push.
-- I run-delen av en githubaction kan man hente ut commit med `${{github.sha}}`, se [docs](https://help.github.com/en/actions/reference/contexts-and-expression-syntax-for-github-actions). Tilsvarende kan den hentes ut i `src-index/main.js som `process.env.GITHUB_SHA`
-
-For å trigge en action, committ en endring i en av filene under `src`.
-
-Det finnes en githook som linter yml-filer for å slippe unna enkelte yml-feil i workflow-definisjonen.
-Om du ønsker å ta den i bruk kan du kjøre kommandoen `git config core.hooksPath .githooks`
-
-
-### Autodeploy til host
-- Utvid `.github/workflows/nodejs.yml` til også å generere og laste opp index.html i host-bucketen. Sjekk ut tilgjengelige variable for node i [docs](https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables).
-
+Denne fila skal du nå kunne åpne fra bucketen og se appen :rocket:
 
 ### CDN
 

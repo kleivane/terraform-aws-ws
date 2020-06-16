@@ -1,6 +1,9 @@
 const HOST_BUCKET_NAME='tf-2-host-test'
+const ASSET_BUCKET_URL='https://tf-2-assets.s3.eu-north-1.amazonaws.com'
 const VERSION='1'
+
 const environment = process.argv[2];
+
 
 var AWS = require('aws-sdk');
 var fs = require('fs');
@@ -38,7 +41,7 @@ const index = `<!doctype html>
        <!-- application binding -->
        <app-root></app-root>
        <!-- fully-qualified static assets -->
-       <script src="${url}/assets/${sha}/main.js" type="text/javascript"></script>
+       <script src="${ASSET_BUCKET_NAME}/assets/${sha}/main.js" type="text/javascript"></script>
 
 
    </body>
