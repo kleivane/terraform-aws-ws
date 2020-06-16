@@ -1,6 +1,6 @@
 const HOST_BUCKET_NAME='tf-2-host-test'
 const ASSET_BUCKET_URL='https://tf-2-assets.s3.eu-north-1.amazonaws.com'
-const VERSION='2'
+const VERSION='3'
 
 const environment = process.argv[2];
 

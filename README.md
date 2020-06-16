@@ -74,6 +74,12 @@ Gjør endring i `deploy-env.js` og sett navn inn rett navn på bucket og rett ur
 
 Denne fila skal du nå kunne åpne fra bucketen og se appen :rocket:
 
+Dersom du kjører `npm run deploy-test` med samme versjonsnummer en gang til, vil du se at `Build deploy at` endrer seg, mens fargen, heading og `Build created at` er den samme.
+
+###
+
+Ny versjon! Prøv å gjør en endring i koden og deploy en ny versjon! Hvilket tall du velger spiller ingen rolle, men husk å oppdatere versjonen både i `upload-assets.js` og `deploy-env.js`
+
 ### CDN
 
 AWS CloudFront er Amazon sin CDN-provider, se [terraform-docs](https://www.terraform.io/docs/providers/aws/r/cloudfront_distribution.html).
@@ -107,30 +113,22 @@ Cirka frem til punktet "Lag et eget domene" kan du finne et løsningsforslag i r
 * Lag et prodmiljø
 * Trekk ut bygging av index.html til en lambda
     * Lambdaen trenger kildekode i egen bucket
-    * La tagging i github `lambda-x.y.z` trigge bygging og release av ny kildekode
     * Provisjoner lambda med terraform pr miljø og send inn versjon av kildekoden som skal brukes
 
 
 # Notater
-
 
 ## Lage Starterpack
 
 * Klone repoet git clone <ssh> starterpack
 * Slett .git-mappa
 * Slett stuff under terraform (behold test/main og test/output og test/policy)
-* Slett stuff under .github (behold nodejs0.yml, og triggere xxxxx)
 * Lag et nytt repo på github
 * Slett notatene her
 * Kjør git init, add, commit, push til nytt repo
 
 # Tilbakemeldinger 19.mai
-* brukte mye tid på github actions
 * kom kort 🙈
 * funker bra med små grupper og skjermdeling
 * hvordan angripe CloudFront-delen....? mye config/doc/ukjent
 * teste ut import av en ressurss fra AWS
-
-## Vurderinger
-* Ta i bruk act for å enklere kjøring av github-action
-* Trenger /build å lastes opp med sha i navnet?
