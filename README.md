@@ -1,7 +1,6 @@
-# Immutable-webapp
-En implementasjon av stukturen fra https://immutablewebapps.org/
+# Webapp i AWS med terraform
+En implementasjon av infratrukturen fra https://immutablewebapps.org/
 
-[Slides](https://docs.google.com/presentation/d/1gcnwG0NzTiAlQ9NrjWCTa6c0yCiKYEkowBLn9BSKbjA/present)
 
 ## Forberedelser
 
@@ -23,7 +22,6 @@ En implementasjon av stukturen fra https://immutablewebapps.org/
     - Kommandoen `aws iam get-user` kan brukes som en ping og sjekk av alt ok!
     - Når vi senere skal bruke terraform til å sette opp vår infrastruktur, er det credentials konfigurert gjennom aws-cliet over som terraform også bruker som credentials
 
-Om du allerede nå ser at du vil lage noe under et eget domene, anbefaler jeg å gå inn på AWS Route 53 og opprettet et billig et med en gang. Selv om det sikkert går mye fortere, advarere Amazon om at det kan ta opp til 3 dager.
 
 ## Bli kjent
 
@@ -32,12 +30,11 @@ Om du allerede nå ser at du vil lage noe under et eget domene, anbefaler jeg å
 ### Lokal oppstart
 
 * Kjør opp appen med `npm install && npm run start`
-* Generer en index.html med `node src-index/main.js`
 * Gjør deg kjent med hvor de forskjellige inputene og env-variablene i appen kommer fra
 
-## Min første immutable webapp
+## Min første webapp i skyen
 
-Felles mål her er en immutable webapp med to S3-buckets og et CDN foran som hoster index.html og kildekode.
+Felles mål her er en webapp med to S3-buckets og et CDN foran som hoster index.html og kildekode.
 
 Nyttige lenker:
 * Om du ikke er veldig kjent i aws-konsollen fra før, anbefaler jeg å sjekke ut de forskjellige servicene
@@ -74,11 +71,13 @@ Gjør endring i `deploy-env.js` og sett navn inn rett navn på bucket og rett ur
 
 Denne fila skal du nå kunne åpne fra bucketen og se appen :rocket:
 
+### Redeploy
+
 Dersom du kjører `npm run deploy-test` med samme versjonsnummer en gang til, vil du se at `Build deploy at` endrer seg, mens fargen, heading og `Build created at` er den samme.
 
-###
+### Ny versjon
 
-Ny versjon! Prøv å gjør en endring i koden og deploy en ny versjon! Hvilket tall du velger spiller ingen rolle, men husk å oppdatere versjonen både i `upload-assets.js` og `deploy-env.js`
+Prøv å gjør en endring i koden og deploy en ny versjon! Hvilket tall du velger spiller ingen rolle, men husk å oppdatere versjonen både i `upload-assets.js` og `deploy-env.js`
 
 ### CDN
 
@@ -106,11 +105,9 @@ Test ut endringer i `App.jsx` og deploy ny versjon av assets og index for å sje
 
 Løsningsforslag i repoet frem til hit ligger under https://github.com/kleivane/immutable-webapp/tree/master/terraform/test-1 .
 
-## Videre
+### Vil du fortsette mere?
 
-Cirka frem til punktet "Lag et eget domene" kan du finne et løsningsforslag i repoet https://github.com/kleivane/immutable-webapp/ under mappene `terraform/test`, `terraform/prod` og `terraform/common`.
-
-* Lag et prodmiljø
+* Lag et prodmiljø med ny CDN og en prod-host-bucket
 * Trekk ut bygging av index.html til en lambda
     * Lambdaen trenger kildekode i egen bucket
     * Provisjoner lambda med terraform pr miljø og send inn versjon av kildekoden som skal brukes
