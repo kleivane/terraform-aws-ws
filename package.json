@@ -5,7 +5,9 @@
   "browser": "src/main.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --open --mode development"
+    "start": "webpack-dev-server --open --mode development",
+    "upload-assets": "npm ci && npm run build && node upload-assets",
+    "deploy-test": "node deploy-env test"
   },
   "repository": {
     "type": "git",
@@ -21,9 +23,12 @@
     "@babel/core": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
+    "aws-sdk": "^2.697.0",
     "babel-loader": "^8.0.6",
     "html-webpack-plugin": "^3.2.0",
+    "install": "^0.13.0",
     "moment": "^2.24.0",
+    "npm": "^6.14.5",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
