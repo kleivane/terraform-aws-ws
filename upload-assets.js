@@ -1,5 +1,5 @@
 const ASSET_BUCKET_NAME='tf-2-assets'
-const VERSION='1'
+const VERSION='2'
 
 var AWS = require('aws-sdk');
 var fs = require('fs');

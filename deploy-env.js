@@ -1,6 +1,6 @@
 const HOST_BUCKET_NAME='tf-2-host-test'
 const ASSET_BUCKET_URL='https://tf-2-assets.s3.eu-north-1.amazonaws.com'
-const VERSION='1'
+const VERSION='2'
 
 const environment = process.argv[2];
 
@@ -13,7 +13,7 @@ const url = '';
 const sha =VERSION;
 const date = new Date().toISOString();
 
-console.log(`ENV_NAME: '${environment}''`)
+console.log(`ENV_NAME: '${environment}'`)
 console.log(`GIT_SHA: '${sha}'`)
 console.log(`API_URL: '${url}'`)
 console.log(`CREATED_AT: '${date}'`)
@@ -41,7 +41,7 @@ const index = `<!doctype html>
        <!-- application binding -->
        <app-root></app-root>
        <!-- fully-qualified static assets -->
-       <script src="${ASSET_BUCKET_NAME}/assets/${sha}/main.js" type="text/javascript"></script>
+       <script src="${ASSET_BUCKET_URL}/assets/${sha}/main.js" type="text/javascript"></script>
 
 
    </body>
