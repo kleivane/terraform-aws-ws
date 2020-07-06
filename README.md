@@ -8,7 +8,6 @@ En implementasjon av infratrukturen fra https://immutablewebapps.org/
 - Sjekk at `node` og `npm` er installert
 - `brew install awscli`
 - `brew install terraform`
-- `git --version` er større en 2.9 (om du har lavere versjon, drop githook som er nevnt senere)
 - Opprett en AWS-konto på https://aws.amazon.com/.
     - Bruk Basic-versjonen
     - Legg inn betalingskort <- følg med på kostnadene og husk å slette infrastrukturen som koster penger når dagen er ferdig
@@ -38,7 +37,7 @@ Felles mål her er en webapp med to S3-buckets og et CDN foran som hoster index.
 
 Nyttige lenker:
 * Om du ikke er veldig kjent i aws-konsollen fra før, anbefaler jeg å sjekke ut de forskjellige servicene
-underveise
+underveis
     - https://console.aws.amazon.com/s3
     - https://console.aws.amazon.com/cloudfront
     - https://console.aws.amazon.com/route53
