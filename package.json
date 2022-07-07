@@ -27,7 +27,7 @@
     "babel-loader": "^8.0.6",
     "html-webpack-plugin": "^3.2.0",
     "install": "^0.13.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "npm": "^6.14.5",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
